@@ -1,18 +1,20 @@
-function Paddle(_ctx, events){
+function Paddle(_ctx, user){
 	this.ctx = _ctx;
 	this._width = _ctx.canvas.width;
 	this._height = _ctx.canvas.height;
 	this.width = 5;
 	this.height = 96;
-	this.x = this._width - ( this.width * 2 );
+	this.x = user === true ? this.width * 2 : this._width - ( this.width * 2 );
 	this.y = 190;
 	this.yMax = this._height - this.height;
 	this.direction = 0;
 	this.speed = 10;
 
 	// moviment events
-	document.addEventListener('keyup', this.keyup.bind( this ), true);
-	document.addEventListener('keydown', this.keydown.bind( this ), true);
+	if( user === true ){
+		document.addEventListener('keyup', this.keyup.bind( this ), true);
+		document.addEventListener('keydown', this.keydown.bind( this ), true);
+	}
 
 	this.draw();
 }

@@ -6,8 +6,9 @@
 		// add the ball
 		this.ball = new Ball( this.ctx );
 
-		// user paddle
-		this.user = new Paddle( this.ctx );
+		// user and cpu paddle
+		this.user = new Paddle( this.ctx, true );
+		this.cpu = new Paddle( this.ctx );
 
 		// run it
 		this.animate();
@@ -29,8 +30,8 @@
 		this.stage();
 
 		this.ball.animate();
-
 		this.user.animate();
+		this.cpu.animate();
 	};
 
 	Pong.prototype.stage = function(){
