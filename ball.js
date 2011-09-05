@@ -4,6 +4,9 @@ function Ball(_ctx){
 	this.y = 10;
 	this.radius = 10;
 	this.speed = 10;
+	this.direction = {
+		x: 1, y: 1
+	};
 }
 
 Ball.prototype.draw = function(){
@@ -18,18 +21,25 @@ Ball.prototype.draw = function(){
 Ball.prototype.animate = function(){
 	this.collision();
 
-	this.x += this.speed;
+	this.x += this.speed * this.direction.x;
+	this.y += this.speed * this.direction.y;
 
 	this.draw();
 };
 
 Ball.prototype.collision = function(){
 	var
-		x = this.x,
+		x = this.x, y = this.y,
+		right = x + this.radius,
+		bottom = y + this.radius,
 		width = this.ctx.canvas.width,
-		right = x + this.radius;
+		height = this.ctx.canvas.height;
 
-	if( x <= 0 || x >= width ){
-		this.speed *= -1;
+	if( x <= 0 || right >= width ){
+		this.direction.x *= -1;
+	}
+	
+	if( y <= 0 || bottom >= height ){
+		this.direction.y *= -1;
 	}
 };
