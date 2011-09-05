@@ -1,5 +1,6 @@
 function Paddle(_ctx, user){
 	this.ctx = _ctx;
+	this.user = !!user;
 	this._width = _ctx.canvas.width;
 	this._height = _ctx.canvas.height;
 	this.width = 5;
@@ -7,6 +8,7 @@ function Paddle(_ctx, user){
 	this.x = user === true ? this.width * 2 : this._width - ( this.width * 2 );
 	this.y = 190;
 	this.yMax = this._height - this.height;
+	this.yMiddle = this.yMax / 2;
 	this.direction = 0;
 	this.speed = 10;
 
@@ -14,6 +16,8 @@ function Paddle(_ctx, user){
 	if( user === true ){
 		document.addEventListener('keyup', this.keyup.bind( this ), true);
 		document.addEventListener('keydown', this.keydown.bind( this ), true);
+	} else {
+		this.speed *= .85;
 	}
 
 	this.draw();
@@ -28,7 +32,11 @@ Paddle.prototype.draw = function(){
 	ctx.fill();
 };
 
-Paddle.prototype.animate = function(){
+Paddle.prototype.animate = function(ball){
+	if( ! this.user ){
+		this.ai( ball );
+	}
+
 	this.move();
 	this.draw();
 };
@@ -41,6 +49,10 @@ Paddle.prototype.move = function(){
 	} else if( this.y > this.yMax ){
 		this.y = this.yMax;
 	}
+};
+
+Paddle.prototype.ai = function( ball ){
+	this.direction = ball > this.y ? 1 : -1;
 };
 
 Paddle.prototype.keyup = function(e){

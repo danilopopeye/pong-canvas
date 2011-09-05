@@ -31,7 +31,7 @@
 
 		this.ball.animate();
 		this.user.animate();
-		this.cpu.animate();
+		this.cpu.animate( this.ball.y );
 	};
 
 	Pong.prototype.stage = function(){
