@@ -11,7 +11,11 @@
 	}
 
 	Pong.prototype.animate = function(){
-		this.ball.draw();
+		requestAnimationFrame(
+			this.animate.bind( this )
+		);
+
+		this.ball.animate();
 	};
 
 	window.pong = new Pong();
