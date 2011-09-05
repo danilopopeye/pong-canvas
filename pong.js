@@ -4,11 +4,11 @@
 		this.ctx = this.element.getContext('2d');
 
 		// add the ball
-		this.ball = new Ball( this.ctx );
+		this.ball = new Ball(this);
 
 		// user and cpu paddle
-		this.user = new Paddle( this.ctx, true );
-		this.cpu = new Paddle( this.ctx );
+		this.user = new Paddle(this, true);
+		this.cpu = new Paddle(this);
 
 		// run it
 		this.animate();
@@ -29,9 +29,9 @@
 
 		this.stage();
 
-		this.ball.animate();
 		this.user.animate();
-		this.cpu.animate( this.ball.y );
+		this.cpu.animate();
+		this.ball.animate();
 	};
 
 	Pong.prototype.stage = function(){

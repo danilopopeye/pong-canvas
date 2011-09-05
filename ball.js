@@ -1,5 +1,6 @@
-function Ball(_ctx){
-	this.ctx = _ctx;
+function Ball(pong){
+	this.parent = pong;
+	this.ctx = pong.ctx;
 	this.x = 10;
 	this.y = 10;
 	this.radius = 10;

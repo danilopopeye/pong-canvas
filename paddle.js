@@ -1,8 +1,9 @@
-function Paddle(_ctx, user){
-	this.ctx = _ctx;
+function Paddle(pong, user){
+	this.parent = pong;
+	this.ctx = pong.ctx;
 	this.user = !!user;
-	this._width = _ctx.canvas.width;
-	this._height = _ctx.canvas.height;
+	this._width = pong.element.width;
+	this._height = pong.element.height;
 	this.width = 5;
 	this.height = 96;
 	this.x = user === true ? this.width * 2 : this._width - ( this.width * 2 );
@@ -32,9 +33,9 @@ Paddle.prototype.draw = function(){
 	ctx.fill();
 };
 
-Paddle.prototype.animate = function(ball){
+Paddle.prototype.animate = function(){
 	if( ! this.user ){
-		this.ai( ball );
+		this.ai();
 	}
 
 	this.move();
@@ -52,7 +53,7 @@ Paddle.prototype.move = function(){
 };
 
 Paddle.prototype.ai = function( ball ){
-	this.direction = ball > this.y ? 1 : -1;
+	this.direction = this.parent.ball.y > this.y ? 1 : -1;
 };
 
 Paddle.prototype.keyup = function(e){
