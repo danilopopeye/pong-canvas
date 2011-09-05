@@ -23,7 +23,21 @@
 
 		this.clear();
 
+		this.stage();
+
 		this.ball.animate();
+	};
+
+	Pong.prototype.stage = function(){
+		var ctx = this.ctx, half = this.element.width / 2;
+
+		// divisory line
+		ctx.beginPath();
+		ctx.moveTo( half, 0 );
+		ctx.lineTo( half, this.element.height );
+		ctx.stroke();
+
+		// TODO put the scores here too
 	};
 
 	window.pong = new Pong();
