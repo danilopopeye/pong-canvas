@@ -3,7 +3,7 @@ function Ball(_ctx){
 	this.x = 10;
 	this.y = 10;
 	this.radius = 10;
-	this.speed = 5;
+	this.speed = 10;
 }
 
 Ball.prototype.draw = function(){
@@ -16,6 +16,20 @@ Ball.prototype.draw = function(){
 };
 
 Ball.prototype.animate = function(){
-	this.x += this.speed * Math.random();
+	this.collision();
+
+	this.x += this.speed;
+
 	this.draw();
+};
+
+Ball.prototype.collision = function(){
+	var
+		x = this.x,
+		width = this.ctx.canvas.width,
+		right = x + this.radius;
+
+	if( x <= 0 || x >= width ){
+		this.speed *= -1;
+	}
 };
