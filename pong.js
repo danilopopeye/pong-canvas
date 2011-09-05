@@ -10,10 +10,18 @@
 		this.animate();
 	}
 
+	Pong.prototype.clear = function(){
+		this.ctx.clearRect(
+			0, 0, this.element.width, this.element.height
+		);
+	};
+
 	Pong.prototype.animate = function(){
 		requestAnimationFrame(
 			this.animate.bind( this )
 		);
+
+		this.clear();
 
 		this.ball.animate();
 	};
