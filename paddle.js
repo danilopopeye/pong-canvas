@@ -5,9 +5,10 @@ function Paddle(_ctx, events){
 	this.width = 5;
 	this.height = 96;
 	this.x = this._width - ( this.width * 2 );
-	this.y = ( this._height - this.height ) / 2;
+	this.y = 190;
+	this.yMax = this._height - this.height;
 	this.direction = 0;
-	this.speed = 5;
+	this.speed = 10;
 
 	// moviment events
 	document.addEventListener('keyup', this.keyup.bind( this ), true);
@@ -26,8 +27,18 @@ Paddle.prototype.draw = function(){
 };
 
 Paddle.prototype.animate = function(){
-	this.y += this.speed * this.direction;
+	this.move();
 	this.draw();
+};
+
+Paddle.prototype.move = function(){
+	this.y += this.speed * this.direction;
+
+	if( this.y < 0 ){
+		this.y = 0;
+	} else if( this.y > this.yMax ){
+		this.y = this.yMax;
+	}
 };
 
 Paddle.prototype.keyup = function(e){
