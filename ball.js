@@ -1,12 +1,14 @@
 function Ball(pong){
 	this.parent = pong;
 	this.ctx = pong.ctx;
-	this.x = 10;
-	this.y = 10;
 	this.radius = 10;
+	this.x = 710;
+	this.y = parseInt(
+		Math.random() * ( this.ctx.canvas.height - this.radius ), 10
+	);
 	this.speed = 10;
 	this.direction = {
-		x: 1, y: 1
+		x: -1, y: new Date().getTime() % 2 ? 1 : -1
 	};
 }
 
@@ -38,9 +40,8 @@ Ball.prototype.collision = function(){
 		user = this.parent.user,
 		cpu = this.parent.cpu;
 
-	if( x <= 0 || right >= width ){
-		// this.parent.play = false;
-		this.direction.x *= -1;
+	if( x === 0 || right >= width ){
+		this.parent.play = false;
 	}
 
 	if( y <= 0 || bottom >= height ){
@@ -48,7 +49,6 @@ Ball.prototype.collision = function(){
 	}
 
 	if( this.direction.x === -1 && ( this.x === ( user.x + user.width ) ) ){
-		console.log('user line');
 		this.paddleCollision( user );
 	}
 
