@@ -3,6 +3,9 @@
 		this.element = document.getElementById('stage');
 		this.ctx = this.element.getContext('2d');
 
+		// game is on
+		this.play = true;
+
 		// add the ball
 		this.ball = new Ball(this);
 
@@ -21,6 +24,10 @@
 	};
 
 	Pong.prototype.animate = function(){
+		if( this.play === false ){
+			return false;
+		}
+
 		requestAnimationFrame(
 			this.animate.bind( this )
 		);

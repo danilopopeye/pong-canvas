@@ -4,7 +4,7 @@ function Paddle(pong, user){
 	this.user = !!user;
 	this._width = pong.element.width;
 	this._height = pong.element.height;
-	this.width = 5;
+	this.width = 10;
 	this.height = 96;
 	this.x = user === true ? this.width * 2 : this._width - ( this.width * 2 );
 	this.y = 190;
