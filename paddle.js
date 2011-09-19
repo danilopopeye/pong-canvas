@@ -18,7 +18,7 @@ function Paddle(pong, user){
 		document.addEventListener('keyup', this.keyup.bind( this ), true);
 		document.addEventListener('keydown', this.keydown.bind( this ), true);
 	} else {
-		this.speed *= .85;
+		this.speed *= 0.85;
 	}
 
 	this.draw();

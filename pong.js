@@ -17,6 +17,8 @@
 		this.animate();
 	}
 
+	Pong.prototype.version = 0.1;
+
 	Pong.prototype.clear = function(){
 		this.ctx.clearRect(
 			0, 0, this.element.width, this.element.height
